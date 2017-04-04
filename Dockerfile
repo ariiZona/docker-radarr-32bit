@@ -10,6 +10,13 @@ ARG BUILD_DATE
 ARG VERSION
 LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 
+# adding mono repo
+RUN \  
+ apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 \
+	--recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF && \
+ echo "deb http://download.mono-project.com/repo/debian wheezy main" \
+	| tee /etc/apt/sources.list.d/mono-xamarin.list && \
+
 # install packages
 RUN \
  apt-get update && \
